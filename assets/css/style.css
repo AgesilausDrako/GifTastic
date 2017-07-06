@@ -30,14 +30,27 @@ body {
 	padding: .25em 2em;
 }
 
-#add-subject {
+.btn {
 	margin: .25em;
+}
+#add-subject {
 	background-color: #000;
 	color: #fff;
 }
 
 #add-subject:hover {
 	color: #e60000;
+}
+
+#reset-btn {
+	background-color: #e60000;
+	color: #fff;
+	padding-left: 1.25em;
+	padding-right: 1.25em;
+}
+
+#reset-btn:hover {
+	color: #000;
 }
 
 .img-responsive {
