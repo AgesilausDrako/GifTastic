@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
 	background-image: url("../images/concrete_seamless.png");
 }
@@ -17,6 +18,7 @@ body {
 	color: #e60000;
 }
 
+/* Form Styles */
 .form-div {
 	margin-top: .5em;
 }
@@ -26,14 +28,13 @@ body {
 	margin-right: .25em;
  }
 
+/* Form Buttons */
 #new-subject {
 	padding: .25em 2em;
 }
 
-.btn {
-	margin: .25em;
-}
 #add-subject {
+	margin: .25 .25 .25 0;
 	background-color: #000;
 	color: #fff;
 }
@@ -45,14 +46,16 @@ body {
 #reset-btn {
 	background-color: #e60000;
 	color: #fff;
-	padding-left: 1.25em;
-	padding-right: 1.25em;
+	margin: .25em;
+	padding-left: 1.1em;
+	padding-right: 1.1em;
 }
 
 #reset-btn:hover {
 	color: #000;
 }
 
+/* Image Styles */
 .img-responsive {
 	width: 100%;
 	border: .25em solid #000;

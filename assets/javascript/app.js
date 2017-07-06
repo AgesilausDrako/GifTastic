@@ -70,7 +70,6 @@ $(document).ready(function(){
 		$(document).on("click", ".martialArt", showPictures);
 
 		function reset() {
-			$("#apButtons").empty();
 			$("#pictures").empty();
 			renderButtons();
 		}
