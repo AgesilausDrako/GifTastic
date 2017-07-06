@@ -52,13 +52,13 @@ $(document).ready(function(){
 		        for (var i = 0; i < results.length; i++) {
 
 		        	var martialArtsDiv = $("<div>");
-		        	var p = $("<p>").text("Rating: " + results[i].rating);
+		        	var p = $("<p class='listing'>").text("Rating: " + results[i].rating);
 		        	var martialArtsImage = $("<img>");
 		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
 		        	martialArtsImage.attr("data-animate", results[i].source);
 		        	martialArtsImage.attr("data-still", results[i].source.replace(".gif", "_s.gif"));
 		        	martialArtsImage.attr("data-state", "still");
-		        	martialArtsImage.addClass("gif");
+		        	martialArtsImage.addClass("gif img-responsive img-rounded");
             		martialArtsDiv.append(martialArtsImage);
             		martialArtsDiv.append(p);
 

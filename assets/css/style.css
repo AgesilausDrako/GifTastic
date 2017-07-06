@@ -1,3 +1,7 @@
+body {
+	background-image: url("../images/concrete_seamless.png");
+}
+
 .jumbotron {
 	color: #fff;
 	background-color: #000;
@@ -10,7 +14,7 @@
 }
 
 .btn-inverse:hover, .btn-inverse:focus {
-	color: red;
+	color: #e60000;
 }
 
 .form-div {
@@ -33,5 +37,14 @@
 }
 
 #add-subject:hover {
-	color: red;
+	color: #e60000;
+}
+
+.img-responsive {
+	width: 100%;
+	border: .25em solid #000;
+}
+
+.listing {
+	font-size: 2em;
 }
