@@ -1,0 +1,37 @@
+.jumbotron {
+	color: #fff;
+	background-color: #000;
+}
+
+.martialArt {
+	margin: .25em;
+	background-color: #000;
+	color: #fff;
+}
+
+.btn-inverse:hover, .btn-inverse:focus {
+	color: red;
+}
+
+.form-div {
+	margin-top: .5em;
+}
+
+ label {
+	font-size: 1.5em;
+	margin-right: .25em;
+ }
+
+#new-subject {
+	padding: .25em 2em;
+}
+
+#add-subject {
+	margin: .25em;
+	background-color: #000;
+	color: #fff;
+}
+
+#add-subject:hover {
+	color: red;
+}

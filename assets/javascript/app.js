@@ -12,7 +12,7 @@ $(document).ready(function(){
 	    for (var i = 0; i < martialArts.length; i++) {
 
 	      	var martialArtsBtn = $("<button>");
-	      	martialArtsBtn.addClass("martialArt");
+	      	martialArtsBtn.addClass("martialArt btn btn-lg btn-inverse");
 	      	martialArtsBtn.attr("data-name", martialArts[i]);
 	        martialArtsBtn.text(martialArts[i]);
 	        $("#apButtons").append(martialArtsBtn);
@@ -22,34 +22,47 @@ $(document).ready(function(){
 
     // This function handles events where one button is clicked
       $("#add-subject").on("click", function(event) {
+
         event.preventDefault();
 
-
         martialArtsBtn = $("#new-subject").val().trim();
-
  
         martialArts.push(martialArtsBtn);
         console.log(martialArts)
 
-  
         renderButtons();
-      });				
-	// var newButton = $("#apButtons");
+      });
 
-    // Here we use jQuery's custom .each method to loop through the object and immediately create divs.
-    // $.each(martialArts, function(number, martialArt){
-    //   newButton.append("<div>" + martialArts + "</div>")
-    // });
+      function showPictures (event) {
 
-	//var api_key = ;
-	// var queryURL = "http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
+      	event.preventDefault();
 
- //      $.ajax({
- //        url: queryURL,
- //        method: 'GET'
- //      }).done(function(response) {
- //        console.log(response);
- //  });
-    renderButtons();
+      	var martialArtSearch = $(this).attr("data-name");
+		// var apiKey = "eb3194d2efdd4d4d9d7a47a9eff216f2";
+		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+        martialArtSearch + "&api_key=eb3194d2efdd4d4d9d7a47a9eff216f2&limit=10";
+		      $.ajax({
+		        url: queryURL,
+		        method: 'GET'
+		      }).done(function(response) {
+		        console.log(response);
+		        var results = response.data;
 
+		        for (var i = 0; i < results.length; i++) {
+
+		        	var martialArtsDiv = $("<div>");
+		        	var p = $("<p>").text("Rating: " + results[i].rating);
+		        	var martialArtsImage = $("<img>");
+		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
+		        	martialArtsDiv.append(p);
+            		martialArtsDiv.append(martialArtsImage);
+
+            		$("#pictures").prepend(martialArtsDiv);
+		        }
+		  	});
+		  }
+		  
+		$(document).on("click", ".martialArt", showPictures);
+
+		renderButtons();
 });
