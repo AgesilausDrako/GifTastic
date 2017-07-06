@@ -28,6 +28,7 @@ $(document).ready(function(){
         martialArtsBtn = $("#new-subject").val().trim();
  
         martialArts.push(martialArtsBtn);
+
         console.log(martialArts)
 
         renderButtons();
@@ -54,15 +55,37 @@ $(document).ready(function(){
 		        	var p = $("<p>").text("Rating: " + results[i].rating);
 		        	var martialArtsImage = $("<img>");
 		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
-		        	martialArtsDiv.append(p);
+		        	martialArtsImage.attr("data-animate", results[i].source);
+		        	martialArtsImage.attr("data-still", results[i].source.replace(".gif", "_s.gif"));
+		        	martialArtsImage.attr("data-state", "still");
+		        	martialArtsImage.addClass("gif");
             		martialArtsDiv.append(martialArtsImage);
+            		martialArtsDiv.append(p);
 
             		$("#pictures").prepend(martialArtsDiv);
 		        }
 		  	});
 		  }
-		  
+
 		$(document).on("click", ".martialArt", showPictures);
+
+		function gifClick () {
+
+			console.log("clicked gif");
+		   
+		    var state = $(this).attr("data-state");
+		    
+		    if (state === "still") {
+		      $(this).attr("src", $(this).attr("data-animate"));
+		      $(this).attr("data-state", "animate");
+		    } else {
+		      $(this).attr("src", $(this).attr("data-still"));
+		      $(this).attr("data-state", "still");
+	  		}
+	      }
+
+		
+	    $(document).on("click", ".gif", gifClick);
 
 		renderButtons();
 });
