@@ -59,9 +59,9 @@ $(document).ready(function(){
 		        	var p = $("<p class='listing'>").text("Rating: " + results[i].rating);
 		        	var martialArtsImage = $("<img>");
 		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
-		        	martialArtsImage.attr("data-animate", results[i].source);
-		        	martialArtsImage.attr("data-still", results[i].source.replace(".gif", "_s.gif"));
-		        	martialArtsImage.attr("data-state", "still");
+		        	martialArtsImage.attr("data-animate", results[i].images.fixed_height.url);
+		        	martialArtsImage.attr("data-still", results[i].images.fixed_height_still.url);
+		        	martialArtsImage.attr("data-state", "animate");
 		        	martialArtsImage.addClass("gif img-responsive img-rounded");
             		martialArtsDiv.append(martialArtsImage);
             		martialArtsDiv.append(p);
@@ -85,7 +85,7 @@ $(document).ready(function(){
 		function gifClick (event) {
 
 			event.preventDefault();
-			
+
 			console.log("clicked gif");
 		   
 		    var state = $(this).attr("data-state");
