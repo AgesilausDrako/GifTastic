@@ -1,14 +1,17 @@
+// Ready function whichs ensures no JS is used until the document is fully loaded
 $(document).ready(function(){
 	
+	// Initial array
 	var martialArts = [ "tae kwon do", "karate", "aikido", 
 						"ju-jitsu", "muay thai", "krav maga",
 						"brazilian jiu-jitsu", "judo", "kali"];
 
+	// Function to empty the button space and render the buttons from the array
 	function renderButtons() {
-
+		// Ensures no reduplication of the original array
 		$("#apButtons").empty();
 	
-
+		// The loop which iterates through the array and creates the buttons
 	    for (var i = 0; i < martialArts.length; i++) {
 
 	      	var martialArtsBtn = $("<button>");
@@ -20,7 +23,7 @@ $(document).ready(function(){
 	      }
     }
 
-    // This function handles events where one button is clicked
+    // This function pushes the new subject to the array and recalls the renderButtons function
       $("#add-subject").on("click", function(event) {
 
         event.preventDefault();
@@ -34,6 +37,7 @@ $(document).ready(function(){
         renderButtons();
       });
 
+      // This function retrieves the data-name and queries with an Ajax call to the API
       function showPictures (event) {
 
       	event.preventDefault();
@@ -62,20 +66,26 @@ $(document).ready(function(){
             		martialArtsDiv.append(martialArtsImage);
             		martialArtsDiv.append(p);
 
+            		// The data pictures are appended to the div
             		$("#pictures").prepend(martialArtsDiv);
 		        }
 		  	});
 		  }
 
+		// Calls the showPictures function
 		$(document).on("click", ".martialArt", showPictures);
 
+		// This function resets the app without using refresh
 		function reset() {
 			$("#pictures").empty();
 			renderButtons();
 		}
 
-		function gifClick () {
+		// This function stops and starts the gif upon clicking
+		function gifClick (event) {
 
+			event.preventDefault();
+			
 			console.log("clicked gif");
 		   
 		    var state = $(this).attr("data-state");
@@ -89,8 +99,9 @@ $(document).ready(function(){
 	  		}
 	      }
 
-		
+		// Click which calls the gifClick function
 	    $(document).on("click", ".gif", gifClick);
 
+	    // The initial call and rendering of the button array
 		renderButtons();
 });
