@@ -14,12 +14,16 @@ $(document).ready(function(){
 		// The loop which iterates through the array and creates the buttons
 	    for (var i = 0; i < martialArts.length; i++) {
 
+	    	// Variable for the buttons
 	      	var martialArtsBtn = $("<button>");
+	      	// Adds classes for styling and manipulation
 	      	martialArtsBtn.addClass("martialArt btn btn-lg btn-inverse");
+	      	// Adds date-name to be used in later Ajax call
 	      	martialArtsBtn.attr("data-name", martialArts[i]);
+	      	// Gives the buttons their titles
 	        martialArtsBtn.text(martialArts[i]);
+	        // Appends buttons to the div
 	        $("#apButtons").append(martialArtsBtn);
-
 	      }
     }
 
@@ -41,32 +45,46 @@ $(document).ready(function(){
       function showPictures (event) {
 
       	event.preventDefault();
-
+      	// Variable for the query search
       	var martialArtSearch = $(this).attr("data-name");
 		// var apiKey = "eb3194d2efdd4d4d9d7a47a9eff216f2";
+		// Query that includes parameters, API-key and search variable
 		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
         martialArtSearch + "&api_key=eb3194d2efdd4d4d9d7a47a9eff216f2&limit=10";
-		      $.ajax({
+		      	// Ajax call to the Giphy API to retrieve data
+		      	$.ajax({
 		        url: queryURL,
 		        method: 'GET'
 		      }).done(function(response) {
 		        console.log(response);
+		        // Variable for the response data so it can be accessed
 		        var results = response.data;
 
+		        // Loop to iterate over the results of the Ajax call
 		        for (var i = 0; i < results.length; i++) {
 
+		        	// Variable for creating divs to put the data in
 		        	var martialArtsDiv = $("<div>");
+		        	// Variable to display the picture's rating
 		        	var p = $("<p class='listing'>").text("Rating: " + results[i].rating);
+		        	// Variable to display the gif data
 		        	var martialArtsImage = $("<img>");
+		        	// Method to add the images' source to the image variable
 		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
+		        	// Adds the data-attribute for the animated version
 		        	martialArtsImage.attr("data-animate", results[i].images.fixed_height.url);
+		        	// Adds the data-attribute for the still version
 		        	martialArtsImage.attr("data-still", results[i].images.fixed_height_still.url);
+		        	// Adds and sets the animated default data-state so it can be toggled later
 		        	martialArtsImage.attr("data-state", "animate");
+		        	// Adds bootstrap classes for styling
 		        	martialArtsImage.addClass("gif img-responsive img-rounded");
+		        	// Appends the image to the div
             		martialArtsDiv.append(martialArtsImage);
+            		// Appends the listing variable to the div
             		martialArtsDiv.append(p);
 
-            		// The data pictures are appended to the div
+            		// Appends the data divs to the pictures div
             		$("#pictures").prepend(martialArtsDiv);
 		        }
 		  	});
@@ -87,14 +105,18 @@ $(document).ready(function(){
 			event.preventDefault();
 
 			console.log("clicked gif");
-		   
+		   	//Stores the current data-state in a variable for if/else clause
 		    var state = $(this).attr("data-state");
-		    
+		    // If/else statement which toggles between animated and still versions
 		    if (state === "still") {
+		      // Changes the source to data-animate if state is still
 		      $(this).attr("src", $(this).attr("data-animate"));
+		      // Changes the data-state to animate
 		      $(this).attr("data-state", "animate");
 		    } else {
+		      // Changes the source to data-still if state is active
 		      $(this).attr("src", $(this).attr("data-still"));
+		      // Changes the data-state to still
 		      $(this).attr("data-state", "still");
 	  		}
 	      }
