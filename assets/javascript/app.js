@@ -31,16 +31,22 @@ $(document).ready(function(){
       $("#add-subject").on("click", function(event) {
 
         event.preventDefault();
+        if ($("input").val() === "") {
+        	console.log("Invalid input!");
+        	return false
+        } else {
+	        // Variable to be pushed to the array
+	        martialArtsBtn = $("#new-subject").val().trim();
+	 		// Pushes the variable
+	        martialArts.push(martialArtsBtn);
 
-        martialArtsBtn = $("#new-subject").val().trim();
- 
-        martialArts.push(martialArtsBtn);
+	        console.log(martialArts)
+	        // Resets the input value to nothing
+	        $("#new-subject").val("");
 
-        console.log(martialArts)
-
-        $("#new-subject").val("");
-
-        renderButtons();
+	        // Calls the function again to update the page
+	        renderButtons();
+        }
       });
 
       // This function retrieves the data-name and queries with an Ajax call to the API
@@ -86,7 +92,6 @@ $(document).ready(function(){
 	            		martialArtsDiv.append(martialArtsImage);
 	            		// Appends the listing variable to the div
 	            		martialArtsDiv.append(p);
-
 	            		// Appends the data divs to the pictures div
 	            		$("#pictures").prepend(martialArtsDiv);
             		}
@@ -99,15 +104,14 @@ $(document).ready(function(){
 
 		// This function resets the app without using refresh
 		function reset(event) {
-			prevent.preventDefault();
-			clear();
-			renderButtons();
+			location.reload();
 		}
 
 		$(document).on("click", "#reset-btn", reset);
 
 		// This function resets the app without using refresh
 		function clear(event) {
+			// Prevents default refresh
 			event.preventDefault();
 			$("#pictures").empty();
 		}
@@ -116,9 +120,8 @@ $(document).ready(function(){
 
 		// This function stops and starts the gif upon clicking
 		function gifClick (event) {
-
+			// Prevent default refresh
 			event.preventDefault();
-
 			console.log("clicked gif");
 		   	//Stores the current data-state in a variable for if/else clause
 		    var state = $(this).attr("data-state");
