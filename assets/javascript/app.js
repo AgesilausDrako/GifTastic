@@ -62,30 +62,32 @@ $(document).ready(function(){
 
 		        // Loop to iterate over the results of the Ajax call
 		        for (var i = 0; i < results.length; i++) {
+		        	// If/else clause that restricts the results to g or pg only rated gifs
+		        	if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+			        	// Variable for creating divs to put the data in
+			        	var martialArtsDiv = $("<div>");
+			        	// Variable to display the picture's rating
+			        	var p = $("<p class='listing'>").text("Rating: " + results[i].rating);
+			        	// Variable to display the gif data
+			        	var martialArtsImage = $("<img>");
+			        	// Method to add the images' source to the image variable
+			        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
+			        	// Adds the data-attribute for the animated version
+			        	martialArtsImage.attr("data-animate", results[i].images.fixed_height.url);
+			        	// Adds the data-attribute for the still version
+			        	martialArtsImage.attr("data-still", results[i].images.fixed_height_still.url);
+			        	// Adds and sets the animated default data-state so it can be toggled later
+			        	martialArtsImage.attr("data-state", "animate");
+			        	// Adds bootstrap classes for styling
+			        	martialArtsImage.addClass("gif img-responsive img-rounded");
+			        	// Appends the image to the div
+	            		martialArtsDiv.append(martialArtsImage);
+	            		// Appends the listing variable to the div
+	            		martialArtsDiv.append(p);
 
-		        	// Variable for creating divs to put the data in
-		        	var martialArtsDiv = $("<div>");
-		        	// Variable to display the picture's rating
-		        	var p = $("<p class='listing'>").text("Rating: " + results[i].rating);
-		        	// Variable to display the gif data
-		        	var martialArtsImage = $("<img>");
-		        	// Method to add the images' source to the image variable
-		        	martialArtsImage.attr("src", results[i].images.fixed_height.url);
-		        	// Adds the data-attribute for the animated version
-		        	martialArtsImage.attr("data-animate", results[i].images.fixed_height.url);
-		        	// Adds the data-attribute for the still version
-		        	martialArtsImage.attr("data-still", results[i].images.fixed_height_still.url);
-		        	// Adds and sets the animated default data-state so it can be toggled later
-		        	martialArtsImage.attr("data-state", "animate");
-		        	// Adds bootstrap classes for styling
-		        	martialArtsImage.addClass("gif img-responsive img-rounded");
-		        	// Appends the image to the div
-            		martialArtsDiv.append(martialArtsImage);
-            		// Appends the listing variable to the div
-            		martialArtsDiv.append(p);
-
-            		// Appends the data divs to the pictures div
-            		$("#pictures").prepend(martialArtsDiv);
+	            		// Appends the data divs to the pictures div
+	            		$("#pictures").prepend(martialArtsDiv);
+            		}
 		        }
 		  	});
 		  }
