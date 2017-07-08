@@ -55,6 +55,17 @@ body {
 	color: #000;
 }
 
+#clear-btn {
+	background-color: #00e600;
+	color: #000;
+}
+
+#clear-btn:hover {
+	color: #fff;
+}
+
+
+
 /* Image Styles */
 .img-responsive {
 	width: 100%;

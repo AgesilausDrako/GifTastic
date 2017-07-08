@@ -38,6 +38,8 @@ $(document).ready(function(){
 
         console.log(martialArts)
 
+        $("#new-subject").val("");
+
         renderButtons();
       });
 
@@ -96,10 +98,21 @@ $(document).ready(function(){
 		$(document).on("click", ".martialArt", showPictures);
 
 		// This function resets the app without using refresh
-		function reset() {
-			$("#pictures").empty();
+		function reset(event) {
+			prevent.preventDefault();
+			clear();
 			renderButtons();
 		}
+
+		$(document).on("click", "#reset-btn", reset);
+
+		// This function resets the app without using refresh
+		function clear(event) {
+			event.preventDefault();
+			$("#pictures").empty();
+		}
+
+		$(document).on("click", "#clear-btn", clear);
 
 		// This function stops and starts the gif upon clicking
 		function gifClick (event) {
