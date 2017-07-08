@@ -63,7 +63,7 @@ $(document).ready(function(){
 		        // Loop to iterate over the results of the Ajax call
 		        for (var i = 0; i < results.length; i++) {
 		        	// If/else clause that restricts the results to g or pg only rated gifs
-		        	if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+		        	if (results[i].rating !== "r") {
 			        	// Variable for creating divs to put the data in
 			        	var martialArtsDiv = $("<div>");
 			        	// Variable to display the picture's rating
