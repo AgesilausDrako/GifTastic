@@ -51,7 +51,7 @@ $(document).ready(function(){
       	var martialArtSearch = $(this).attr("data-name");
 		// var apiKey = "eb3194d2efdd4d4d9d7a47a9eff216f2";
 		// Query that includes parameters, API-key and search variable
-		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         martialArtSearch + "&api_key=eb3194d2efdd4d4d9d7a47a9eff216f2&limit=10";
 		      	// Ajax call to the Giphy API to retrieve data
 		      	$.ajax({
