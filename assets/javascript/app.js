@@ -31,6 +31,7 @@ $(document).ready(function(){
       $("#add-subject").on("click", function(event) {
 
         event.preventDefault();
+        // Prevents the user from submitting without text
         if ($("input").val() === "") {
         	console.log("Invalid input!");
         	return false
@@ -98,24 +99,22 @@ $(document).ready(function(){
 		        }
 		  	});
 		  }
-
 		// Calls the showPictures function
 		$(document).on("click", ".martialArt", showPictures);
 
 		// This function resets the app without using refresh
 		function reset(event) {
+			// Reloads the application
 			location.reload();
 		}
 
 		$(document).on("click", "#reset-btn", reset);
-
 		// This function resets the app without using refresh
 		function clear(event) {
 			// Prevents default refresh
 			event.preventDefault();
 			$("#pictures").empty();
 		}
-
 		$(document).on("click", "#clear-btn", clear);
 
 		// This function stops and starts the gif upon clicking
@@ -138,7 +137,6 @@ $(document).ready(function(){
 		      $(this).attr("data-state", "still");
 	  		}
 	      }
-
 		// Click which calls the gifClick function
 	    $(document).on("click", ".gif", gifClick);
 
